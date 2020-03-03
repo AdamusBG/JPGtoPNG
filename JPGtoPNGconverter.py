@@ -1,6 +1,6 @@
 import sys     #will need sys to get file paths from the command line
 import os      #os needed to manipulate files
-from PIL import Image      #needed for the final stage to manipulate the images
+from PIL import Image, UnidentifiedImageError   #needed for the final stage to manipulate the images
 
 
 filepath1 = sys.argv [1]
@@ -10,7 +10,7 @@ if not os.path.isdir(filepath2):
 	try:
 		os.mkdir(filepath2)
 	except FileNotFoundError:
-		print("FileNotFoundError - Please carefully check the file path entered and verify that it is valid.")
+		print("FileNotFoundError - This program will make a new target directory, but it will not work if the parent of that directory doesn't already exist, please cheack the filepath you entered.")
 
 for filename in os.listdir(filepath1):
 	try:
@@ -20,3 +20,5 @@ for filename in os.listdir(filepath1):
 	except FileNotFoundError:
 		print("FileNotFoundError - make sure both file paths end with \'/\'")
 		break
+
+print("Images have been successfully converted")
